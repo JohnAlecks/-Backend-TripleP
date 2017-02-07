@@ -168,6 +168,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.4)
   byebug
+  case_transform (~> 0.2)
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
