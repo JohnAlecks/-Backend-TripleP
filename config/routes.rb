@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 	    namespace :v1 do
 	    get   'information',	to: 'users#index'
 	    get	  'pins',	to: 'pins#get_pins'
+	    post  'create/pin', to: 'pins#create_pin'
     	devise_for :users, controllers: {
     		registrations: 'api/v1/registrations'
       	}

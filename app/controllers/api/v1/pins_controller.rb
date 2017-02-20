@@ -4,4 +4,17 @@ class Api::V1::PinsController < ApplicationController
 		pins = Pin.where(street: current_city)
 		render json: pins
 	end
+
+	def create_pin
+		pin = current_user.pins.create(pin_params)
+		if pin.persisted?
+			
+		end
+	end
+
+	protected 
+
+	def pin_params
+		params.require(:pin).permit(:latitude, :longtitude, :street, :user_id)
+	end
 end
