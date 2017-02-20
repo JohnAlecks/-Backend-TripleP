@@ -1,20 +1,26 @@
 class Api::V1::PinsController < ApplicationController
 	def get_pins
-		current_city = MatchingService.get_city(10.777430, 106.664904)
-		pins = Pin.where(street: current_city)
+		pins = Pin.where(street: city)
 		render json: pins
 	end
 
+	def city
+		MatchingService.get_city(params[:latitude], params[:longtitude])
+	end
+
 	def create_pin
-		pin = current_user.pins.create(pin_params)
+		pin = Pin.create(pin_params)
 		if pin.persisted?
-			
+			respond_to do |format|
+	        	msg = { :status => "OK", :message => "Successful" }
+	        	format.json  { render :json => msg }
+			end
 		end
 	end
 
 	protected 
 
 	def pin_params
-		params.require(:pin).permit(:latitude, :longtitude, :street, :user_id)
+		params.require(:pin).permit(:latitude, :longtitude)
 	end
 end

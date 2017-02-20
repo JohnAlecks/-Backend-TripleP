@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 	    get	  'pins',	to: 'pins#get_pins'
 	    post  'create/pin', to: 'pins#create_pin'
     	devise_for :users, controllers: {
-    		registrations: 'api/v1/registrations'
+    		registrations: 'api/v1/registrations',
+    		sessions: 'api/v1/sessions'
       	}
 	    end
 	  end

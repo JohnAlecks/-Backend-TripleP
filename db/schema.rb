@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 20170207092656) do
     t.string   "latitude"
     t.string   "longtitude"
     t.integer  "user_id"
-    t.string   "city"
-    t.string   "street"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

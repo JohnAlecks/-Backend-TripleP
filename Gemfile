@@ -23,6 +23,8 @@ gem 'coffee-rails', '~> 4.2'
 
 # Mobile Authentication and Web Authentication
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth', '~> 1.6', '>= 1.6.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
