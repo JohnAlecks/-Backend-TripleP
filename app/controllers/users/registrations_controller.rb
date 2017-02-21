@@ -2,6 +2,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include ActionController::MimeResponds
   prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
 
+  def resource_name
+    :user
+  end
+
   def create
     user_registration
     if resource.persisted?

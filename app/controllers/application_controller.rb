@@ -1,10 +1,5 @@
 class ApplicationController < ActionController::API	
-
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
-  def authenticate_user!
-      redirect_to root_path unless user_signed_in? || current_user.present?
-  end
 
   protected
 

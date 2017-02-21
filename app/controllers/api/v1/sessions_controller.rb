@@ -1,8 +1,10 @@
 class Api::V1::SessionsController < Devise::SessionsController
 	include ActionController::MimeResponds
+	prepend_before_action :require_no_authentication, only: [:create]
 
 	def create
-		sign_in(:api_v1_user, User.last)
+		self.resource = warden.authenticate!(auth_options)
+    sign_in(resource_name, resource)
 		if api_v1_user_signed_in?
 			respond_to do |format|
 		        msg = { :status => "ok", :message => current_api_v1_user.inspect }
@@ -27,8 +29,7 @@ class Api::V1::SessionsController < Devise::SessionsController
 
   protected 
 
-  def sign_in_params
-    devise_parameter_sanitizer.sanitize(:sign_in)
+  def auth_options
+    { scope: resource_name, recall: "#{controller_path}#new" }
   end
-
 end

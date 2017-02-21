@@ -1,10 +1,10 @@
 class Api::V1::RegistrationsController < Devise::RegistrationsController
   include ActionController::MimeResponds
-  prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
-  before_filter :configure_permitted_parameters
+  prepend_before_action :require_no_authentication, only: [:create]
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def create
-    build_resource(user_params)
+    build_resource(sign_up_params)
     if resource.save
       respond_to do |format|
         msg = { :status => "ok", :message => "Success!" }
@@ -20,14 +20,8 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def user_params
-  	params.require(:user).permit(:email, :first_name, :last_name, :dob, :uid)
-  end
-
-  def configure_permitted_parameters
-	devise_parameter_sanitizer.sanitize(:sign_up) do |u|
-      u.permit(:first_name, :last_name, :email)
-    end  	
+  def sign_up_params
+    devise_parameter_sanitizer.sanitize(:sign_up)
   end
 end
 	
