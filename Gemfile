@@ -21,9 +21,12 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Realtime Data
+gem 'aws-sdk-rails'
+gem 'aws-sdk', '~> 2'
+
 # Mobile Authentication and Web Authentication
 gem 'devise'
-gem 'devise_token_auth'
 gem 'omniauth', '~> 1.6', '>= 1.6.1'
 
 # Use jquery as the JavaScript library

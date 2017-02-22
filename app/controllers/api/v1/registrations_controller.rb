@@ -1,5 +1,4 @@
 class Api::V1::RegistrationsController < Devise::RegistrationsController
-  include ActionController::MimeResponds
   prepend_before_action :require_no_authentication, only: [:create]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
