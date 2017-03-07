@@ -3,6 +3,13 @@ class Api::V1::SessionsController < Devise::SessionsController
 	prepend_before_action :require_no_authentication, only: [:create]
 	prepend_before_action :allow_params_authentication!, only: :create
 
+  def new
+    respond_to do |format|
+      msg = { :status => request.headers.inspect }
+      format.json { render json: msg }
+    end
+  end
+    
 	def create
 		resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)

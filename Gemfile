@@ -43,6 +43,10 @@ gem 'jbuilder', '~> 2.5'
 # Geocode for Pins
 gem 'geocoder'
 
+# Authentication Token for User Authentication
+gem 'simple_token_authentication', '~> 1.0' 
+
+
 gem 'active_model_serializers', '~> 0.10.4'
 
 # Use Capistrano for deployment
